@@ -1,10 +1,10 @@
 <?php
 
-class IndexController extends ControllerBase
+class AboutController extends ControllerBase
 {
     public function initialize()
     {
-        $this->tag->setTitle('Welcome');
+        $this->tag->setTitle('About us');
         parent::initialize();
     }
 
