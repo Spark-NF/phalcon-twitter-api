@@ -1,10 +1,9 @@
 <?php
-
-class IndexController extends ControllerBase
+class PricingController extends ControllerBase
 {
     public function initialize()
     {
-        $this->tag->setTitle('Welcome');
+        $this->tag->setTitle('Pricing');
         parent::initialize();
     }
 

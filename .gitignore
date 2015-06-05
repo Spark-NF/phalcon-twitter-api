@@ -1,11 +1,23 @@
-# IDE
-*.iml
-.idea/
-
 # Phalcon
 *.volt.php
 /cache/
 /config/development/
+
+# Global
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# IDE
+*.iml
+.idea/
+.project
+.settings
+.buildpath
+*.komodoproject
+*.sublime-project
+*.sublime-workspace
 
 # Composer
 composer.lock
