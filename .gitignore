@@ -2,6 +2,11 @@
 *.iml
 .idea/
 
+# Phalcon
+*.volt.php
+/cache/
+/config/development/
+
 # Composer
 composer.lock
 composer.phar

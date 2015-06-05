@@ -23,6 +23,9 @@ $di->set('url', function() use ($config) {
 $di->set('view', function() use ($config) {
     $view = new View();
     $view->setViewsDir(APP_PATH . $config->application->viewsDir);
+    $view->registerEngines(array(
+        '.volt' => 'Phalcon\Mvc\View\Engine\Volt'
+    ));
     return $view;
 });
 
