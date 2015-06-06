@@ -26,19 +26,31 @@ nav {
     border: none;
     border-radius: 0;
     color: #fff;
+    margin-bottom: 0;
 }
 
 #content {
     background-color: #fff;
     border-top: 1px solid #ef7311;
-    margin-top: 50px;
+    margin-top: 70px;
+}
+
+.page-header {
+    margin-top: 0;
+}
+.page-header h2 {
+    margin-top: 0;
+}
+
+.row .col-header {
+    margin-top: 0;
 }
 
 #inner {
     margin-top: -50px;
     background-color: white;
     bottom: 0;
-    padding: 0 20px 4040px;
+    padding: 20px 20px 4040px;
     margin-bottom: -4000px;
     overflow: hidden;
     border-radius: 15px 15px 0 0;
@@ -57,5 +69,5 @@ nav {
     padding: 10px 15px;
     text-align: center;
     font-size: 13px;
-    color: #666;
+    color: rgba(0,0,0,0.7);
 }

@@ -1,5 +1,9 @@
-{{ elements.getTabs() }}
+{% extends "templates/index.volt" %}
 
-<div align="center">
-    {{ content() }}
-</div>
+{% block content %}
+    {{ elements.getTabs() }}
+
+    <div align="center">
+        {{ content() }}
+    </div>
+{% endblock %}
