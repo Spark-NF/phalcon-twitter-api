@@ -18,7 +18,9 @@ class NotFoundPlugin extends Plugin
 	 * This action is executed before execute any action in the application
 	 *
 	 * @param Event $event
-	 * @param Dispatcher $dispatcher
+	 * @param Dispatcher|MvcDispatcher $dispatcher
+	 * @param Exception $exception
+	 * @return bool
 	 */
 	public function beforeException(Event $event, MvcDispatcher $dispatcher, Exception $exception)
 	{

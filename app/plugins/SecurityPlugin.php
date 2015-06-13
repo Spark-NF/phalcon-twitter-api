@@ -57,7 +57,8 @@ class SecurityPlugin extends Plugin
 				'register'   => array('index'),
 				'errors'     => array('show401', 'show404', 'show500'),
 				'session'    => array('index', 'register', 'start', 'end'),
-				'contact'    => array('index', 'send')
+				'contact'    => array('index', 'send'),
+				'api'        => array('index')
 			);
 			foreach ($publicResources as $resource => $actions) {
 				$acl->addResource(new Resource($resource), $actions);
@@ -91,10 +92,10 @@ class SecurityPlugin extends Plugin
 	 *
 	 * @param Event $event
 	 * @param Dispatcher $dispatcher
+	 * @return bool
 	 */
 	public function beforeDispatch(Event $event, Dispatcher $dispatcher)
 	{
-
 		$auth = $this->session->get('auth');
 		if (!$auth){
 			$role = 'Guests';
@@ -113,7 +114,7 @@ class SecurityPlugin extends Plugin
 				'controller' => 'errors',
 				'action'     => 'show401'
 			));
-                        $this->session->destroy();
+			$this->session->destroy();
 			return false;
 		}
 	}
