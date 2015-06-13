@@ -39,13 +39,26 @@ class ApiController extends ControllerBase
         }
 
         $token = $_GET['token'];
+        // TODO check token
+
         $url = $this->dispatcher->getParam('url');
 
         $data = $_GET;
         unset($data['_url']);
         unset($data['token']);
 
-        $response = $this->callAPI('GET', 'https://api.twitter.com/'.$url, $data);
+        $cache = $this->di->getShared('cacheShort');
+        $cacheKey = $url;
+        if ($data)
+            $cacheKey = sprintf("%s?%s", $cacheKey, http_build_query($data));
+        $cacheKey = md5($cacheKey);
+
+        $response = $cache->get($cacheKey);
+        if ($response === null) {
+            $response = $this->callAPI('GET', 'https://api.twitter.com/'.$url, $data);
+            $cache->save($cacheKey, $response);
+        }
+
         exit($response);
     }
 }

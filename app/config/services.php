@@ -2,11 +2,14 @@
 use Phalcon\Mvc\View;
 use Phalcon\DI\FactoryDefault;
 use Phalcon\Mvc\Dispatcher;
+use Phalcon\Mvc\Model\Metadata\Memory as MetaData;
 use Phalcon\Mvc\Url as UrlProvider;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Flash\Session as FlashSession;
 use Phalcon\Events\Manager as EventsManager;
+use Phalcon\Cache\Backend\File as BackFile;
+use Phalcon\Cache\Frontend\Data as FrontData;
 
 $di = new FactoryDefault();
 
@@ -40,6 +43,39 @@ $di->set('view', function() use ($config) {
 		".volt" => 'volt'
 	));
 	return $view;
+});
+
+$di->set('cacheShort', function() {
+	$frontCache = new FrontData(array(
+		"lifetime" => 3600 * 2
+	));
+	/*return new BackMemCached($frontCache, array(
+		"servers" => array(
+			array(
+				"host"   => "127.0.0.1",
+				"port"   => "11211",
+				"weight" => "1"
+			)
+		)
+	));*/
+	return new BackFile(
+		$frontCache,
+		array(
+			"cacheDir" => APP_PATH . "cache/short/"
+		)
+	);
+});
+
+$di->set('cacheLong', function() {
+	$frontCache = new FrontData(array(
+		"lifetime" => 3600 * 24 * 7
+	));
+	return new BackFile(
+		$frontCache,
+		array(
+			"cacheDir" => APP_PATH . "cache/long/"
+		)
+	);
 });
 
 $di->set('volt', function($view, $di) {
