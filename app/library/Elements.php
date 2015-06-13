@@ -27,6 +27,10 @@ class Elements extends Component
             ),
         ),
         'navbar-right' => array(
+            'profile' => array(
+                'caption' => 'Profile',
+                'action' => 'index'
+            ),
             'session' => array(
                 'caption' => 'Log in / Sign up',
                 'action' => 'index'
@@ -54,11 +58,6 @@ class Elements extends Component
             'controller' => 'producttypes',
             'action' => 'index',
             'any' => true
-        ),
-        'Your Profile' => array(
-            'controller' => 'invoices',
-            'action' => 'profile',
-            'any' => false
         )
     );
 
@@ -73,6 +72,7 @@ class Elements extends Component
             );
         } else {
             unset($this->_headerMenu['navbar-left']['invoices']);
+            unset($this->_headerMenu['navbar-right']['profile']);
         }
 
         $controllerName = $this->view->getControllerName();
