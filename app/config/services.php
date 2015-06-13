@@ -4,7 +4,6 @@ use Phalcon\DI\FactoryDefault;
 use Phalcon\Mvc\Dispatcher;
 use Phalcon\Mvc\Url as UrlProvider;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
-use Phalcon\Mvc\Model\Metadata\Memory as MetaData;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Flash\Session as FlashSession;
 use Phalcon\Events\Manager as EventsManager;
@@ -23,7 +22,11 @@ $di->set('dispatcher', function() use ($di) {
 	return $dispatcher;
 });
 
-$di->set('url', function() use ($config){
+$di->set('router', function () use ($config) {
+	return include APP_PATH . 'app/config/routes.php';
+}, true);
+
+$di->set('url', function() use ($config) {
 	$url = new UrlProvider();
 	$url->setBaseUri($config->application->baseUri);
 	return $url;

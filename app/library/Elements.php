@@ -14,7 +14,7 @@ class Elements extends Component
                 'action' => 'index'
             ),
             'invoices' => array(
-                'caption' => 'Invoices',
+                'caption' => 'Dashboard',
                 'action' => 'index'
             ),
             'about' => array(
