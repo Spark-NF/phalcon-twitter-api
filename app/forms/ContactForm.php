@@ -13,11 +13,11 @@ class ContactForm extends Form
     {
         // Name
         $name = new Text('name');
-        $name->setLabel('Your full name');
+        $name->setLabel('Full name');
         $name->setFilters(array('striptags', 'string'));
         $name->addValidators(array(
             new PresenceOf(array(
-                'message' => 'Name is required'
+                'message' => 'Full name is required'
             ))
         ));
         $this->add($name);
@@ -41,7 +41,7 @@ class ContactForm extends Form
         $comments->setFilters(array('striptags', 'string'));
         $comments->addValidators(array(
             new PresenceOf(array(
-                'message' => 'Comments is required'
+                'message' => 'Comment is required'
             ))
         ));
         $this->add($comments);

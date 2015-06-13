@@ -15,7 +15,10 @@
     </nav>
 
     <div id="main">
-        {{ flash.output() }}
+        <div class="container" id="messages">
+            {{ flash.output() }}
+        </div>
+
         {{ content() }}
     </div>
 
