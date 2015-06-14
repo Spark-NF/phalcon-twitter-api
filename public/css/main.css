@@ -81,3 +81,13 @@ nav {
     font-size: 13px;
     color: rgba(0,0,0,0.7);
 }
+
+.offer {
+    padding-top: 10px;
+}
+.offer.active-offer {
+    background-color: #eee;
+}
+.offer a {
+    margin: 15px auto 10px;
+}

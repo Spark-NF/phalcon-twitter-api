@@ -9,6 +9,10 @@ class ControllerBase extends Controller
         $this->view->setTemplateAfter('main');
     }
 
+    /**
+     * @param $uri
+     * @return mixed
+     */
     protected function forward($uri)
     {
         $uriParts = explode('/', $uri);
