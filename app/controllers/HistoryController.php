@@ -1,13 +1,12 @@
 <?php
-
 use Phalcon\Flash;
 use Phalcon\Session;
 
-class InvoicesController extends ControllerBase
+class HistoryController extends ControllerBase
 {
     public function initialize()
     {
-        $this->tag->setTitle('Manage your Invoices');
+        $this->tag->setTitle('Your API call history');
         parent::initialize();
     }
 

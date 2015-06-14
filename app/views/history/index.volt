@@ -1,6 +1,4 @@
-<p>
-    <h2>Your Invoices</h2>
-</p>
+<h2>Your Invoices</h2>
 
 <table class="table table-bordered table-striped">
     <thead>

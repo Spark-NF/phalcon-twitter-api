@@ -13,7 +13,7 @@ class Elements extends Component
                 'caption' => 'Pricing',
                 'action' => 'index'
             ),
-            'invoices' => array(
+            'history' => array(
                 'caption' => 'Dashboard',
                 'action' => 'index'
             ),
@@ -35,30 +35,15 @@ class Elements extends Component
                 'caption' => 'Log in / Sign up',
                 'action' => 'index'
             ),
-        )
+        ),
     );
 
     private $_tabs = array(
-        'Invoices' => array(
-            'controller' => 'invoices',
+        'History' => array(
+            'controller' => 'history',
             'action' => 'index',
             'any' => false
         ),
-        'Companies' => array(
-            'controller' => 'companies',
-            'action' => 'index',
-            'any' => true
-        ),
-        'Products' => array(
-            'controller' => 'products',
-            'action' => 'index',
-            'any' => true
-        ),
-        'Product Types' => array(
-            'controller' => 'producttypes',
-            'action' => 'index',
-            'any' => true
-        )
     );
 
     public function getMenu()
