@@ -53,7 +53,7 @@ class SecurityPlugin extends Plugin
 			$publicResources = array(
 				'index'      => array('index'),
 				'about'      => array('index'),
-				'pricing'    => array('index'),
+				'pricing'    => array('index', 'switch'),
 				'register'   => array('index'),
 				'errors'     => array('show401', 'show404', 'show500'),
 				'session'    => array('index', 'register', 'start', 'end'),

@@ -1,0 +1,6 @@
+[.] Projet fonctionnel : 7 points
+[x] Dossier de présentation et d’architecture : 5 points
+[ ] Cahier de tests (unitaires + use case) : 5 points
+[ ] Tests de charge : 2 points
+[x] Bonne utilisation du versionning : 1 point
+[x] Qualité du code : 1 point

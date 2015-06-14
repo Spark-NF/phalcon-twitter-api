@@ -67,7 +67,6 @@ class SessionController extends ControllerBase
     {
         //Get session info
         $auth = $this->session->get('auth');
-
         //Query the active user
         $user = Users::findFirst($auth['id']);
         if ($user == false) {
