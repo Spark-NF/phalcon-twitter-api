@@ -39,20 +39,28 @@ class ApiController extends ControllerBase
         }
 
         $token = $_GET['token'];
-        // TODO check token
+        $user_id = 1;
+        // TODO check token and get user_id
 
         $url = $this->dispatcher->getParam('url');
 
+        // $_GET parameters to pass to the API
         $data = $_GET;
         unset($data['_url']);
         unset($data['token']);
 
+        // Count call in database
+        $history = new History();
+        $history->getReadConnection()->query('INSERT INTO history VALUES (:id, NOW(), 1) ON DUPLICATE KEY UPDATE calls = calls + 1', array('id' => $user_id));
+
+        // Get cache key from URL
         $cache = $this->di->getShared('cacheShort');
         $cacheKey = $url;
         if ($data)
             $cacheKey = sprintf("%s?%s", $cacheKey, http_build_query($data));
         $cacheKey = md5($cacheKey);
 
+        // Call twitter API if not already in cache
         $response = $cache->get($cacheKey);
         if ($response === null) {
             $response = $this->callAPI('GET', 'https://api.twitter.com/'.$url, $data);

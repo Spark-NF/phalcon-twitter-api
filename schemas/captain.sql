@@ -143,7 +143,35 @@ LOCK TABLES `users` WRITE;
 INSERT INTO `users` VALUES (1,'demo','c0bd96dc7ea4ec56741a4e07f6ce98012814d853','Phalcon Demo','demo@phalconphp.com','classic','2012-04-10 20:53:03','Y');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+--
+-- Table structure for table `history`
+--
+
+CREATE TABLE IF NOT EXISTS `history` (
+  `user_id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `calls` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `history`
+--
+
+INSERT INTO `history` (`user_id`, `date`, `calls`) VALUES
+  (1, '2015-06-07', 45),
+  (1, '2015-06-08', 60),
+  (1, '2015-06-09', 32),
+  (1, '2015-06-10', 42),
+  (1, '2015-06-11', 3),
+  (1, '2015-06-12', 78),
+  (1, '2015-06-13', 23),
+  (1, '2015-06-14', 12),
+  (1, '2015-06-15', 37);
+
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
