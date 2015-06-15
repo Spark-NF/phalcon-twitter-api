@@ -1,6 +1,11 @@
 # Phalcon
 *.volt.php
-/cache/
+/cache/volt/*
+/cache/short/*
+/cache/long/*
+!/cache/volt/empty
+!/cache/short/empty
+!/cache/long/empty
 /config/development/
 
 # Global
