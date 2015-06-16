@@ -10,16 +10,36 @@ class HistoryController extends ControllerBase
         parent::initialize();
     }
 
-    public function indexAction()
+    protected function getLast($time)
     {
         $date = new DateTime();
-        $date->sub(new DateInterval('P3M'));
+        $date->sub(new DateInterval('P'.$time));
         $history = History::find(array(
-            'user_id = :user_id: AND date >= :date:',
+            'user_id = :user_id: AND date > :date:',
             "order" => "date DESC",
             'bind' => array('user_id' => 1, 'date' => $date->format('Y-m-d'))
         ));
 
-        $this->view->history = $history;
+        return $history;
+    }
+
+    public function indexAction()
+    {
+        $this->view->history = $this->getLast('3M');
+    }
+
+    public function weeklyAction()
+    {
+        $this->view->history = $this->getLast('1W');
+    }
+
+    public function monthlyAction()
+    {
+        $this->view->history = $this->getLast('1M');
+    }
+
+    public function dailyAction()
+    {
+        $this->view->history = $this->getLast('1D');
     }
 }

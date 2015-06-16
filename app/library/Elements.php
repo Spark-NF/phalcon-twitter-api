@@ -44,6 +44,21 @@ class Elements extends Component
             'action' => 'index',
             'any' => false
         ),
+        'Monthly' => array(
+            'controller' => 'history',
+            'action' => 'monthly',
+            'any' => false
+        ),
+        'Weekly' => array(
+            'controller' => 'history',
+            'action' => 'weekly',
+            'any' => false
+        ),
+        'Daily' => array(
+            'controller' => 'history',
+            'action' => 'daily',
+            'any' => false
+        ),
     );
 
     public function getMenu()
