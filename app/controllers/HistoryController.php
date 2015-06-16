@@ -20,26 +20,45 @@ class HistoryController extends ControllerBase
             'bind' => array('user_id' => 1, 'date' => $date->format('Y-m-d'))
         ));
 
-        return $history;
+        $h = array();
+        $max = 0;
+        foreach ($history as $val) {
+            $h[] = $val;
+            $max = $val->calls > $max ? $val->calls : $max;
+        }
+        krsort($h);
+
+        $this->view->history = $h;
+        $this->view->max = $max;
+
+        $widths = array(5, 10, 20, 50, 100, 200, 500, 1000);
+        $i = 0;
+        do {
+            $sw = $widths[$i];
+            $i++;
+        } while ($max / $sw >= 10);
+
+        $this->view->stepWidth = $sw;
+        $this->view->steps = ceil($max / $sw);
     }
 
     public function indexAction()
     {
-        $this->view->history = $this->getLast('3M');
+        $this->getLast('3M');
     }
 
     public function weeklyAction()
     {
-        $this->view->history = $this->getLast('1W');
+        $this->getLast('1W');
     }
 
     public function monthlyAction()
     {
-        $this->view->history = $this->getLast('1M');
+        $this->getLast('1M');
     }
 
     public function dailyAction()
     {
-        $this->view->history = $this->getLast('1D');
+        $this->getLast('1D');
     }
 }

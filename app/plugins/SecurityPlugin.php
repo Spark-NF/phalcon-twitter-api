@@ -22,7 +22,7 @@ class SecurityPlugin extends Plugin
 	 */
 	public function getAcl()
 	{
-		if (!isset($this->persistent->acl)) {
+		if (!isset($this->persistent->acl) || true) {
 
 			$acl = new AclList();
 
