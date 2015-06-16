@@ -13,7 +13,7 @@ class RegisterForm extends Form
     {
         // Name
         $name = new Text('name');
-        $name->setLabel('Your Full Name');
+        $name->setLabel('Full name');
         $name->setFilters(array('striptags', 'string'));
         $name->addValidators(array(
             new PresenceOf(array(
@@ -35,7 +35,7 @@ class RegisterForm extends Form
 
         // Email
         $email = new Text('email');
-        $email->setLabel('E-Mail');
+        $email->setLabel('E-mail');
         $email->setFilters('email');
         $email->addValidators(array(
             new PresenceOf(array(
@@ -59,7 +59,7 @@ class RegisterForm extends Form
 
         // Confirm Password
         $repeatPassword = new Password('repeatPassword');
-        $repeatPassword->setLabel('Repeat Password');
+        $repeatPassword->setLabel('Repeat password');
         $repeatPassword->addValidators(array(
             new PresenceOf(array(
                 'message' => 'Confirmation password is required'
