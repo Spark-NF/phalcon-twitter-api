@@ -40,7 +40,7 @@ class SecurityPlugin extends Plugin
 			//Private area resources
 			$privateResources = array(
 				'companies'    => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
-				'history'      => array('index'),
+				'history'      => array('index', 'weekly', 'monthly', 'daily'),
 				'profile'      => array('index')
 			);
 			foreach ($privateResources as $resource => $actions) {
