@@ -51,7 +51,7 @@ class SessionController extends ControllerBase
             if ($user != false) {
                 $this->_registerSession($user);
                 $this->flash->success('Welcome ' . $user->name);
-                return $this->forward('invoices/index');
+                return $this->forward('history/index');
             }
 
             $this->flash->error('Wrong email/password');

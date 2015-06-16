@@ -56,7 +56,7 @@ class Elements extends Component
                 'action' => 'end'
             );
         } else {
-            unset($this->_headerMenu['navbar-left']['invoices']);
+            unset($this->_headerMenu['navbar-left']['history']);
             unset($this->_headerMenu['navbar-right']['profile']);
         }
 
