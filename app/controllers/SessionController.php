@@ -16,7 +16,7 @@ class SessionController extends ControllerBase
     public function indexAction()
     {
         if (!$this->request->isPost()) {
-            $this->tag->setDefault('email', 'demo@phalconphp.com');
+            $this->tag->setDefault('email', 'demo@demo.com');
             $this->tag->setDefault('password', 'phalcon');
         }
     }

@@ -128,6 +128,7 @@ CREATE TABLE `users` (
   `name` varchar(120) COLLATE utf8_spanish_ci NOT NULL,
   `email` varchar(70) COLLATE utf8_spanish_ci NOT NULL,
   `offer` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
+  `token` varchar(120) COLLATE utf8_spanish_ci NOT NULL,
   `created_at` datetime NOT NULL,
   `active` char(1) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id`)
@@ -140,7 +141,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'demo','c0bd96dc7ea4ec56741a4e07f6ce98012814d853','Phalcon Demo','demo@phalconphp.com','classic','2012-04-10 20:53:03','Y');
+INSERT INTO `users` VALUES (1,'demo','c0bd96dc7ea4ec56741a4e07f6ce98012814d853','Demo','demo@demo.com','classic','token','2012-04-10 20:53:03','Y');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
