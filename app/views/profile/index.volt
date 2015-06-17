@@ -26,6 +26,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="token">Token</label>
+                    <div class="controls">
+                        <input id="token" name="token" value="{{ user.token }}" class="form-control" type="text" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group">
                     <input type="button" value="Update" class="btn btn-primary btn-large btn-info" onclick="Profile.validate()">
                     &nbsp;
                     {{ link_to('invoices/index', 'Cancel') }}
