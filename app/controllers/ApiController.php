@@ -1,57 +1,26 @@
 <?php
 require_once "../app/library/twitteroauth/autoload.php";
-use \Abraham\TwitterOAuth\TwitterOAuth;
 
 class ApiController extends ControllerBase
 {
-    protected function callAPI($method, $url, $data = false)
-    {
-        $curl = curl_init();
-        switch ($method)
-        {
-            case "POST":
-                curl_setopt($curl, CURLOPT_POST, 1);
-                if ($data)
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-                break;
-
-            case "PUT":
-                curl_setopt($curl, CURLOPT_PUT, 1);
-                break;
-
-            default:
-                if ($data)
-                    $url = sprintf("%s?%s", $url, http_build_query($data));
-        }
-
-        /*curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($curl, CURLOPT_USERPWD, "username:password");*/
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-
-        $result = curl_exec($curl);
-        curl_close($curl);
-
-        return $result;
-    }
-
     public function indexAction()
     {
+        header('Content-Type: application/json');
+
+        // We need a token
         if (!isset($_GET['token'])) {
             exit(json_encode(array('code' => 1, 'message' => 'Missing token')));
         }
 
+        // Check token and get user ID
         $token = $_GET['token'];
         $user = Users::findFirst(array('token = :token:', 'bind' => array('token' => $token)));
         if (empty($user)) {
             exit(json_encode(array('code' => 2, 'message' => 'Wrong token')));
         }
 
-        // TODO check token and get user_id
-
-        $url = $this->dispatcher->getParam('url');
-
         // $_GET parameters to pass to the API
+        $url = $this->dispatcher->getParam('url');
         $data = $_GET;
         unset($data['_url']);
         unset($data['token']);
@@ -70,7 +39,8 @@ class ApiController extends ControllerBase
         // Call twitter API if not already in cache
         $response = $cache->get($cacheKey);
         if ($response === null) {
-            $response = $this->callAPI('GET', 'https://api.twitter.com/'.$url, $data);
+            $connection = new TwitterOAuth\TwitterOAuth('KGqlnCFh9OcEygohNCmgBktZi', 'O5vmL3bwbIVe6YNjHthWt1eGmwaLsUnSclHZK2lkCWHiBif0ka', '', '');
+            $response = json_encode($connection->get($url, $data));
             $cache->save($cacheKey, $response);
         }
 
