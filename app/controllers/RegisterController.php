@@ -40,6 +40,8 @@ class RegisterController extends ControllerBase
             $user->email = $email;
             $user->created_at = new Phalcon\Db\RawValue('now()');
             $user->active = 'Y';
+            $user->offer = 'test';
+            $user->token = md5(rand());
             if ($user->save() == false) {
                 foreach ($user->getMessages() as $message) {
                     $this->flash->error((string) $message);

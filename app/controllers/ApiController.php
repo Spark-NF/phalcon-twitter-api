@@ -1,4 +1,7 @@
 <?php
+require_once "../app/library/twitteroauth/autoload.php";
+use \Abraham\TwitterOAuth\TwitterOAuth;
+
 class ApiController extends ControllerBase
 {
     protected function callAPI($method, $url, $data = false)
@@ -39,7 +42,11 @@ class ApiController extends ControllerBase
         }
 
         $token = $_GET['token'];
-        $user_id = 1;
+        $user = Users::findFirst(array('token = :token:', 'bind' => array('token' => $token)));
+        if (empty($user)) {
+            exit(json_encode(array('code' => 2, 'message' => 'Wrong token')));
+        }
+
         // TODO check token and get user_id
 
         $url = $this->dispatcher->getParam('url');
@@ -51,7 +58,7 @@ class ApiController extends ControllerBase
 
         // Count call in database
         $history = new History();
-        $history->getReadConnection()->query('INSERT INTO history VALUES (:id, NOW(), 1) ON DUPLICATE KEY UPDATE calls = calls + 1', array('id' => $user_id));
+        $history->getReadConnection()->query('INSERT INTO history VALUES (:id, NOW(), 1) ON DUPLICATE KEY UPDATE calls = calls + 1', array('id' => $user->id));
 
         // Get cache key from URL
         $cache = $this->di->getShared('cacheShort');
