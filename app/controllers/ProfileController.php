@@ -18,6 +18,8 @@ class ProfileController extends ControllerBase
             return $this->_forward('index/index');
         }
 
+        $this->view->user = $user;
+
         if (!$this->request->isPost()) {
             $this->tag->setDefault('name', $user->name);
             $this->tag->setDefault('email', $user->email);
